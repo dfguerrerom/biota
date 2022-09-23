@@ -217,8 +217,8 @@ class LoadTile(object):
         if self.satellite == 'ALOS-2':
             name_pattern += '_F02DAR'
         
-        # Account for changed file format post 2019
-        if self.year >= 2019:
+        # Account for changed file format post 2017
+        if self.year >= 2017:
             name_pattern += '.tif'
 
         # Generate file name
