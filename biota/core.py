@@ -78,7 +78,7 @@ class LoadTile(object):
         assert os.path.isdir(os.path.expanduser(output_dir)), "Specified output directory (%s) does not exist"%str(output_dir)
         assert type(forest_threshold) == float or type(forest_threshold) == int, "Forest threshold must be numeric."
         assert type(area_threshold) == float or type(area_threshold) == int, "Area threshold must be numeric."
-
+        
         self.lat = lat
         self.lon = lon
         self.year = year
@@ -196,7 +196,7 @@ class LoadTile(object):
 
             # Generate directory name
             directory = self.data_dir + '/' + name_pattern%(lat_dir, lon_dir, str(self.year)[-2:], 'MOS') + '/'
-
+            
             if not os.path.isdir(directory):
                 raise IOError('No tile for lat: %s, lon: %s exists in the specified data directory.'%(str(self.lat), str(self.lon)))
 
@@ -217,8 +217,8 @@ class LoadTile(object):
         if self.satellite == 'ALOS-2':
             name_pattern += '_F02DAR'
         
-        # Account for changed file format post 2017
-        if self.year >= 2017:
+        # Account for changed file format post 2015
+        if self.year >= 2015:
             name_pattern += '.tif'
 
         # Generate file name
@@ -243,7 +243,6 @@ class LoadTile(object):
         """
 
         HVpath = self.__getDirectory() + self.__getFilename('sl_HV')
-
         # Stop if the ALOS data don't exist
         if not os.path.isfile(HVpath):
             raise IOError('No data found for HV polarisation for lat: %s, lon: %s.'%(str(self.lat), str(self.lon)))
