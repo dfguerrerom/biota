@@ -7,22 +7,8 @@ import os
 import pdb
 
 
-
 def loadArray(filepath):
-    """
-    Use gdal to load a geospatial image into a numpy array
-    """
-    
-    from osgeo import gdal
-    
-    ds = gdal.Open(filepath, 0)
-    
-    return ds.ReadAsArray()
-
-def loadArray(filepath):
-    """
-    Use gdal to load a geospatial image into a numpy array
-    """
+    """use rasterio and read the input image path as numpy array"""
     
     import rasterio as rio
     
