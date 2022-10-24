@@ -17,6 +17,10 @@ setup_params = {
             "cfg/*",
         ]
     },
+    "install_requires" : [
+        "scipy==1.3.3",
+        "scikit-image==0.18.3"
+    ]
 }
 
 setup(**setup_params)
