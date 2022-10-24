@@ -6,6 +6,8 @@ import os
 
 import pdb
 
+
+
 def loadArray(filepath):
     """
     Use gdal to load a geospatial image into a numpy array
@@ -16,7 +18,16 @@ def loadArray(filepath):
     ds = gdal.Open(filepath, 0)
     
     return ds.ReadAsArray()
+
+def loadArray(filepath):
+    """
+    Use gdal to load a geospatial image into a numpy array
+    """
     
+    import rasterio as rio
+    
+    return rio.open(filepath).read().squeeze()
+
     
 def loadGeoTransform(filepath):
     """
