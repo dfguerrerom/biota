@@ -602,7 +602,7 @@ class LoadTile(object):
             DN = np.zeros_like(DN_sum)
 
             DN[self.mask == False] = (
-                DN_sum.astype(np.float)[self.mask == False]
+                DN_sum.astype(float)[self.mask == False]
                 / (block_sum - mask_sum)[self.mask == False]
             ).astype(int)
 
@@ -793,8 +793,7 @@ class LoadTile(object):
 
         # Calibrate DN to units of dB
         gamma0 = (
-            10
-            * np.ma.log10(self.getDN(polarisation=polarisation).astype(np.float) ** 2)
+            10 * np.ma.log10(self.getDN(polarisation=polarisation).astype(float) ** 2)
             - 83.0
         )  # units = decibels
         # Apply filter based on dB values
@@ -1417,7 +1416,7 @@ class LoadChange(object):
         if show:
             # Hide minor gain, minor loss and nonforest in display output
             change_code_display = np.ma.array(
-                self.ChangeCode, mask=np.zeros_like(self.ChangeCode, dtype=np.bool)
+                self.ChangeCode, mask=np.zeros_like(self.ChangeCode, dtype=bool)
             )
             change_code_display.mask[
                 np.isin(change_code_display, [0, 3, 4, 255])

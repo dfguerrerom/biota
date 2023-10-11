@@ -192,7 +192,7 @@ def maskArray(tile, array, classes=[], buffer_size=0.0):
     ) == array.shape, "Numpy array shape must be identical to the tile extent."
 
     # If a binary mask is input, assume that True should be added to mask
-    if array.dtype == np.bool and classes == []:
+    if array.dtype == bool and classes == []:
         classes = [True]
 
     # Identify pixels that are classes to be masked
@@ -498,7 +498,7 @@ def updateMask(tile, filename, buffer_size=0.0, classes=[]):
         )
 
     else:
-        if filename.dtype != np.bool:
+        if filename.dtype != bool:
             assert (
                 classes != []
             ), "If adding a non-boolean numpy array file to the mask, you must also specify the class values to add to the mask (e.g. classes = [20, 160, 170, 190, 210])."

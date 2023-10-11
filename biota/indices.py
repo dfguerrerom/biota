@@ -57,9 +57,7 @@ def getContiguousAreas(data, value, min_pixels=1, contiguity="queen"):
     include_id = np.arange(1, n_areas + 1)[label_area >= min_pixels]
 
     # Get a binary array of location_id pixels that meet the minimum area requirement
-    contiguous_area = (
-        np.in1d(location_id, include_id).reshape(data.shape).astype(np.bool)
-    )
+    contiguous_area = np.in1d(location_id, include_id).reshape(data.shape).astype(bool)
 
     # Return an array giving values to each area
     location_id[contiguous_area == False] = 0
@@ -128,7 +126,7 @@ def _buildOutputArray(tile, patch_size, dtype=int):
     output_array = (
         np.ma.array(
             np.zeros((output_size, output_size), dtype=dtype),
-            mask=np.zeros((output_size, output_size), dtype=np.bool),
+            mask=np.zeros((output_size, output_size), dtype=bool),
         )
         + nodata
     )
@@ -197,11 +195,11 @@ def calculateLDI(tile, patch_size="auto", output=False, show=False):
             mask = np.ma.getmask(unique_ids)
             unique_ids = np.ma.getdata(unique_ids)
         else:
-            mask = np.zeros_like(unique_ids, dtype=np.bool)
+            mask = np.zeros_like(unique_ids, dtype=bool)
 
         # Calculate LDI
-        selection_1 = np.zeros_like(unique_ids, dtype=np.bool).ravel()
-        selection_2 = np.zeros_like(unique_ids, dtype=np.bool).ravel()
+        selection_1 = np.zeros_like(unique_ids, dtype=bool).ravel()
+        selection_2 = np.zeros_like(unique_ids, dtype=bool).ravel()
 
         # Draw 1/25th of pixels at random
         selection_1[: (selection_1.shape[0] / 5)] = True
